@@ -1,10 +1,23 @@
+PVector lastCoord;
+
 abstract class Symbol {
+
   protected float x;
   protected float y;
 
   Symbol(float x_, float y_) {
-    this.x = x_;
-    this.y = y_;
+    //this.x = x_;
+    //this.y = y_;
+    if (lastCoord == null) {
+      this.x = 40;
+      this.y = 50;
+    }
+    lastCoord = new PVector(this.x, this.y); //does this work??
+  }
+
+  protected void drawSquare() {
+    fill(255);
+    rect(0, 0, 40, 40);
   }
 
   abstract void drawSelf();
