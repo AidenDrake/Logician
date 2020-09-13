@@ -12,6 +12,10 @@ abstract class Symbol {
       this.x = 40;
       this.y = 50;
     }
+    else {
+      this.x = lastCoord.x + 40;
+      this.y = lastCoord.y;
+    }
     lastCoord = new PVector(this.x, this.y); //does this work??
   }
 
