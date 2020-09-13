@@ -17,10 +17,10 @@ void draw() {
 }
 
 void drawAndBlock(float x, float y) {
-  drawSquare(x, y);
-
   pushMatrix();
   translate(x, y);
+  drawSquare();
+
   line(-20, 0, 20, 0);
   fill(0);
   ellipse(0, 0, 20, 20);
@@ -28,10 +28,10 @@ void drawAndBlock(float x, float y) {
 }
 
 void drawOrBlock(float x, float y) {
-  drawSquare(x, y);
-
   pushMatrix();
   translate(x, y);
+  drawSquare();
+
   fill(0);
   line(-20, 0, 20, 0);
 
@@ -45,18 +45,16 @@ void drawOrBlock(float x, float y) {
   popMatrix();
 }
 
-void drawSquare(float x, float y) {
-  pushMatrix();
-  translate(x, y);
+void drawSquare() {
   fill(255);
   rect(0, 0, 40, 40);
-  popMatrix();
 }
 
 void drawNotBlock(float x, float y) {
-  drawSquare(x, y);
   pushMatrix();
   translate(x, y);
+  drawSquare();
+
   float disp = 7;
   //strokeWeight(2);
   line(-20+disp, -20, 20, 20-disp);
