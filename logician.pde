@@ -1,28 +1,35 @@
 import java.util.LinkedList;
 
-//Symbol j, sally, pilate, orson;
-ArrayList<Symbol> drawList = new ArrayList<Symbol>();
+LinkedList<Symbol> drawList = new LinkedList<Symbol>();
 
 void setup () {
   size(800, 800);
   rectMode(CENTER);
-  //j = new OrSymbol();
-  //sally = new AndSymbol();
-  //pilate = new PrimeSymbol();
-  //orson = new OrSymbol();
 }
 
 void draw() {
   background(125);
-  //j.drawSelf();
-  //sally.drawSelf();
-  //pilate.drawSelf();
-  //orson.drawSelf();
   for (Symbol s : drawList){
     s.drawSelf();
   }
 }
 
 void keyPressed() {
-  drawList.add(new OrSymbol());
+  // procedurally:
+  if (key == 'a'){
+     drawList.add(new OrSymbol());
+  }
+  if (key == 's'){
+     drawList.add(new AndSymbol());
+  }
+  if (key == 'd'){
+     drawList.add(new NotSymbol());
+  }
+  if (key == 'f'){
+     drawList.add(new PrimeSymbol());
+  }
+  if (key == BACKSPACE){ // add in null case
+   Symbol s = drawList.removeLast();
+   s.moveLastEdgeBack();
+  }
 }

@@ -20,6 +20,10 @@ abstract class Symbol {
     lastEdge = new PVector(this.x+myWidth/2, this.y);
   }
 
+  public void moveLastEdgeBack() {
+    lastEdge = new PVector(this.x-MYWIDTH/2, this.y);
+  }
+
   protected void drawSquare() {
     fill(255);
     rect(0, 0, 40, 40);
@@ -141,6 +145,10 @@ class PrimeSymbol extends Symbol {
     rect(0, 0, 2, 30);
     popMatrix();
   }
+  
+  public void moveLastEdgeBack() {
+    lastEdge = new PVector(this.x-10/2, this.y);
+  }
 }
 
 class VarSymbol extends Symbol {
@@ -165,4 +173,5 @@ class VarSymbol extends Symbol {
 
     popMatrix();
   }
+  
 }
