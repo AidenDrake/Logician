@@ -1,4 +1,4 @@
-PVector lastCoord;
+PVector pen;
 
 abstract class Symbol {
 
@@ -8,15 +8,15 @@ abstract class Symbol {
   Symbol(float x_, float y_) {
     //this.x = x_;
     //this.y = y_;
-    if (lastCoord == null) {
+    if (pen == null) {
       this.x = 40;
       this.y = 50;
     }
     else {
-      this.x = lastCoord.x + 40;
-      this.y = lastCoord.y;
+      this.x = pen.x + 40;
+      this.y = pen.y;
     }
-    lastCoord = new PVector(this.x, this.y); //does this work??
+    pen = new PVector(this.x, this.y); //does this work??
   }
 
   protected void drawSquare() {
