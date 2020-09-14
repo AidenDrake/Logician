@@ -26,14 +26,13 @@ abstract class Symbol {
   }
 
   abstract void drawSelf();
-  
+
   protected void updatePen(float myWidth) {
     if (pen == null) {
       pen = new PVector(60, 40);
     } else {
       pen.x = lastEdge.x+ myWidth/2;
       if (pen.x >= width-myWidth-20) {
-        print("feet, time, etc.");
         pen.y += 60;
         pen.x = 40;
       }
@@ -140,6 +139,30 @@ class PrimeSymbol extends Symbol {
     rect(0, 0, 10, 40);
     fill(0);
     rect(0, 0, 2, 30);
+    popMatrix();
+  }
+}
+
+class VarSymbol extends Symbol {
+
+  VarSymbol(float x_, float y_) {
+    super(x_, y_);
+  }
+
+  VarSymbol() {
+    super(MYWIDTH);
+  }
+
+
+  @Override
+    void drawSelf() {
+    pushMatrix();
+    translate(x, y);
+    drawSquare();
+
+    fill(0);
+    rect(0, 0, 20, 20);
+
     popMatrix();
   }
 }
