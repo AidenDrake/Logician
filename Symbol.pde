@@ -5,18 +5,25 @@ abstract class Symbol {
   protected float x;
   protected float y;
 
+  protected static final float MYWIDTH = 40;
+
   Symbol(float x_, float y_) {
     //this.x = x_;
     //this.y = y_;
-    if (pen == null) {
+    if (pen == null) { // old, fix
       this.x = 40;
       this.y = 50;
-    }
-    else {
+    } else {
       this.x = pen.x + 40;
       this.y = pen.y;
     }
     pen = new PVector(this.x, this.y); //does this work??
+  }
+
+  Symbol(float myWidth) {
+    updatePen(myWidth);
+    this.x = pen.x;
+    this.y = pen.y;
   }
 
   protected void drawSquare() {
@@ -25,12 +32,28 @@ abstract class Symbol {
   }
 
   abstract void drawSelf();
+
+  protected void updatePen(float myWidth) {
+    if (pen == null) { // old, fix
+      pen = new PVector(60, 40);
+    } else {
+      pen.x += myWidth;
+      if (pen.y >= width-myWidth-20) {
+        pen.y += 60;
+        pen.x = 40;
+      }
+    }
+  }
 }
 
 class AndSymbol extends Symbol {
 
   AndSymbol (float x_, float y_) {
     super(x_, y_);
+  }
+
+  AndSymbol() {
+    super(MYWIDTH);
   }
 
   @Override
@@ -50,6 +73,10 @@ class OrSymbol extends Symbol {
 
   OrSymbol(float x_, float y_) {
     super(x_, y_);
+  }
+
+  OrSymbol() {
+    super(MYWIDTH);
   }
 
   @Override
@@ -78,6 +105,10 @@ class NotSymbol extends Symbol {
     super(x_, y_);
   }
 
+  NotSymbol() {
+    super(MYWIDTH);
+  }
+
   @Override
     void drawSelf() {
     pushMatrix();
@@ -95,15 +126,19 @@ class NotSymbol extends Symbol {
 }
 
 class PrimeSymbol extends Symbol {
+  private static final float MYWIDTH = 25;
 
   PrimeSymbol(float x_, float y_) {
     super(x_, y_);
   }
 
+  PrimeSymbol() {
+    super(MYWIDTH);
+  }
+
+
   @Override
     void drawSelf() {
-    pushMatrix();
-    translate(x, y);
     pushMatrix();
     translate(x, y);
     fill(255);
