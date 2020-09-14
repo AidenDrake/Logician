@@ -9,16 +9,8 @@ abstract class Symbol {
   protected static final float MYWIDTH = 40;
 
   Symbol(float x_, float y_) {
-    //this.x = x_;
-    //this.y = y_;
-    if (pen == null) { // old, fix
-      this.x = 40;
-      this.y = 50;
-    } else {
-      this.x = pen.x + 40;
-      this.y = pen.y;
-    }
-    pen = new PVector(this.x, this.y); //does this work??
+    this.x = x_;
+    this.y = y_;
   }
 
   Symbol(float myWidth) {
@@ -40,7 +32,8 @@ abstract class Symbol {
       pen = new PVector(60, 40);
     } else {
       pen.x = lastEdge.x+ myWidth/2;
-      if (pen.y >= width-myWidth-20) {
+      if (pen.x >= width-myWidth-20) {
+        print("feet, time, etc.");
         pen.y += 60;
         pen.x = 40;
       }
