@@ -1,4 +1,5 @@
 PVector pen;
+PVector lastEdge;
 
 abstract class Symbol {
 
@@ -24,6 +25,7 @@ abstract class Symbol {
     updatePen(myWidth);
     this.x = pen.x;
     this.y = pen.y;
+    lastEdge = new PVector(this.x+myWidth/2, this.y);
   }
 
   protected void drawSquare() {
@@ -32,12 +34,12 @@ abstract class Symbol {
   }
 
   abstract void drawSelf();
-
+  
   protected void updatePen(float myWidth) {
-    if (pen == null) { // old, fix
+    if (pen == null) {
       pen = new PVector(60, 40);
     } else {
-      pen.x += myWidth;
+      pen.x = lastEdge.x+ myWidth/2;
       if (pen.y >= width-myWidth-20) {
         pen.y += 60;
         pen.x = 40;
@@ -126,7 +128,7 @@ class NotSymbol extends Symbol {
 }
 
 class PrimeSymbol extends Symbol {
-  private static final float MYWIDTH = 25;
+  private static final float MYWIDTH = 10;
 
   PrimeSymbol(float x_, float y_) {
     super(x_, y_);
