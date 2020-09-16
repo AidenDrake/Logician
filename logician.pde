@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 
+Pen pen = new Pen(); // is this good?
 LinkedList<Symbol> drawList = new LinkedList<Symbol>();
 
 void setup () {
@@ -8,28 +9,33 @@ void setup () {
 }
 
 void draw() {
-  background(125);
-  for (Symbol s : drawList){
+  background(100);
+  for (Symbol s : drawList) {
     s.drawSelf();
   }
 }
 
 void keyPressed() {
   // procedurally:
-  if (key == 'a'){
-     drawList.add(new OrSymbol());
+  if (key == 'a') {
+    drawList.add(new OrSymbol());
   }
-  if (key == 's'){
-     drawList.add(new AndSymbol());
+  if (key == 's') {
+    drawList.add(new AndSymbol());
   }
-  if (key == 'd'){
-     drawList.add(new NotSymbol());
+  if (key == 'd') {
+    drawList.add(new NotSymbol());
   }
-  if (key == 'f'){
-     drawList.add(new PrimeSymbol());
+  if (key == 'f') {
+    drawList.add(new VarSymbol());
   }
-  if (key == BACKSPACE){ // add in null case
-   Symbol s = drawList.removeLast();
-   s.moveLastEdgeBack();
+  if (key == 'g') {
+    drawList.add(new PrimeSymbol());
+  }
+  if (key == BACKSPACE) {
+    if (drawList.size()>0) {
+      Symbol s = drawList.removeLast();
+      pen.moveLastEdgeBack();
+    }
   }
 }

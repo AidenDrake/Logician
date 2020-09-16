@@ -1,4 +1,3 @@
-PVector pen;
 PVector lastEdge;
 
 abstract class Symbol {
@@ -14,14 +13,10 @@ abstract class Symbol {
   }
 
   Symbol(float myWidth) {
-    updatePen(myWidth);
-    this.x = pen.x;
-    this.y = pen.y;
-    lastEdge = new PVector(this.x+myWidth/2, this.y);
-  }
-
-  public void moveLastEdgeBack() {
-    lastEdge = new PVector(this.x-MYWIDTH/2, this.y);
+    pen.addWidth(myWidth);
+    this.x = pen.coords.x;
+    this.y = pen.coords.y;
+    //println("new symbol made at ("+x+','+y+").");
   }
 
   protected void drawSquare() {
@@ -30,18 +25,6 @@ abstract class Symbol {
   }
 
   abstract void drawSelf();
-
-  protected void updatePen(float myWidth) {
-    if (pen == null) {
-      pen = new PVector(60, 40);
-    } else {
-      pen.x = lastEdge.x+ myWidth/2;
-      if (pen.x >= width-myWidth-20) {
-        pen.y += 60;
-        pen.x = 40;
-      }
-    }
-  }
 }
 
 class AndSymbol extends Symbol {
@@ -144,10 +127,6 @@ class PrimeSymbol extends Symbol {
     fill(0);
     rect(0, 0, 2, 30);
     popMatrix();
-  }
-  
-  public void moveLastEdgeBack() {
-    lastEdge = new PVector(this.x-10/2, this.y);
   }
 }
 
