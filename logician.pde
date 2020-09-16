@@ -13,6 +13,8 @@ void draw() {
   for (Symbol s : drawList) {
     s.drawSelf();
   }
+  fill(255,0,0);
+  ellipse(pen.coords.x, pen.coords.y, 5, 5);
 }
 
 void keyPressed() {
@@ -35,7 +37,7 @@ void keyPressed() {
   if (key == BACKSPACE) {
     if (drawList.size()>0) {
       Symbol s = drawList.removeLast();
-      pen.moveLastEdgeBack();
+      pen.removeWidth(s);
     }
   }
 }

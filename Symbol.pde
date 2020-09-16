@@ -2,10 +2,10 @@ PVector lastEdge;
 
 abstract class Symbol {
 
-  protected float x;
-  protected float y;
+  public float x;
+  public float y;
 
-  protected static final float MYWIDTH = 40;
+  static final float MYWIDTH = 40;
 
   Symbol(float x_, float y_) {
     this.x = x_;
@@ -25,6 +25,7 @@ abstract class Symbol {
   }
 
   abstract void drawSelf();
+  
 }
 
 class AndSymbol extends Symbol {
